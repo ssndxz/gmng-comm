@@ -1,1 +1,0 @@
-# gmng-comm
