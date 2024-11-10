@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Gaming Community - Home</title>
+  <link rel="stylesheet" href="//use.fontawesome.com/releases/v5.0.7/css/all.css">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+  <link rel="stylesheet" href="styles.css">
+  <script src="scripts.js" defer></script>
+</head>
+<body>
+  <nav class="navbar navbar-expand-lg navbar-dark">
+    <div class="container-fluid">
+      <a class="navbar-brand" href="#">Gaming Community</a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <ul class="navbar-nav me-auto mb-2 mb-lg-0 top-menu">
+          <li class="nav-item">
+            <a class="nav-link active" aria-current="page" href="#">Home</a>
+          </li>
+          <li class="nav-item">
+            <a class='nav-link' href="contact.html">Contact us</a>
+          </li>
+        </ul>
+        <ul class="navbar-nav ms-auto">
+          <li class="nav-item" id="login-form" style="display: none;">
+            <input type="text" id="username" placeholder="Username" required />
+            <input type="password" id="password" placeholder="Password" required />
+            <button id="login-btn">Login</button>
+          </li>
+          <li class="nav-item" id="user-info" style="display: none;">
+            <span id="username-display"></span>
+            <button id="logout-btn">Logout</button>
+          </li>
+        </ul>
+      </div>
+      <button id="theme-switch">
+        <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="#e8eaed"><path d="M480-120q-150 0-255-105T120-480q0-150 105-255t255-105q14 0 27.5 1t26.5 3q-41 29-65.5 75.5T444-660q0 90 63 153t153 63q55 0 101-24.5t75-65.5q2 13 3 26.5t1 27.5q0 150-105 255T480-120Z"/></svg>
+        <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="#e8eaed"><path d="M480-280q-83 0-141.5-58.5T280-480q0-83 58.5-141.5T480-680q83 0 141.5 58.5T680-480q0 83-58.5 141.5T480-280ZM200-440H40v-80h160v80Zm720 0H760v-80h160v80ZM440-760v-160h80v160h-80Zm0 720v-160h80v160h-80ZM256-650l-101-97 57-59 96 100-52 56Zm492 496-97-101 53-55 101 97-57 59Zm-98-550 97-101 59 57-100 96-56-52ZM154-212l101-97 55 53-97 101-59-57Z"/></svg>
+      </button>
+    </div>
+  </nav>
+
+  <main>
+    <div class="container-fluid my-carousel">
+      <div id="carouselExampleIndicators" class="carousel slide carousel-fade">
+        <div class="carousel-indicators">
+          <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
+          <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="1" aria-label="Slide 2"></button>
+          <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="2" aria-label="Slide 3"></button>
+        </div>
+        <div class="carousel-inner">
+          <div class="carousel-item active">
+            <img src="images/banner.jpg" class="d-block w-100" alt="banner">
+          </div>
+          <div class="carousel-item">
+            <img src="images/amogus.jpg" class="d-block w-100" alt="gtav">
+          </div>
+          <div class="carousel-item">
+            <img src="images/corrupt.jpg" class="d-block w-100" alt="no corruption">
+          </div>
+        </div>
+        <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="prev">
+          <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+          <span class="visually-hidden">Previous</span>
+        </button>
+        <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="next">
+          <span class="carousel-control-next-icon" aria-hidden="true"></span>
+          <span class="visually-hidden">Next</span>
+        </button>
+      </div>
+    </div>
+    <section class="main-content">
+      <div class="container">
+        <div class="row">
+          <div class="col-lg-4 col-sm-6 mb-3">
+            <div class="game-card-container" draggable="true">
+              <div class="game-card">
+                <img src="images/dotac.jpg" class="game-img" alt="Dota 2">
+                <div class="game-details">
+                  <h4 class="card-title">Dota 2</h4>
+                  <p class="card-text">Every day, millions of players worldwide enter battle as one of over a hundred Dota heroes. And no matter if it's their 10th hour of play or 1,000th, there's always something new to discover. With regular updates that ensure a constant evolution of gameplay, features, and heroes, Dota 2 has taken on a life of its own.</p>
+                </div>
+                <div class="game-link text-center">
+                  <a href="https://store.steampowered.com/app/570/Dota_2/" class="btn btn-primary">Play Now</a>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="col-lg-4 col-sm-6 mb-3">
+            <div class="game-card-container" draggable="true">
+              <div class="game-card">                
+                <img src="images/dlc.jpg" class="game-img" alt="Deadlock">
+                <div class="game-details">
+                  <h4 class="card-title">Deadlock</h4>
+                  <p class="card-text">Deadlock is a multiplayer game in early development.</p>
+                </div>
+                <div class="game-link text-center">
+                  <a href="https://store.steampowered.com/app/1422450/Deadlock/" class="btn btn-primary">Play Now</a>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="col-lg-4 col-sm-6 mb-3">
+            <div class="game-card-container" draggable="true">
+              <div class="game-card">
+                <img src="images/csc.jpg" class="game-img" alt="CS2">
+                <div class="game-details">
+                  <h4 class="card-title">Counter-Strike 2</h4>
+                  <p class="card-text">For over two decades, Counter-Strike has offered an elite competitive experience, one shaped by millions of players from across the globe. And now the next chapter in the CS story is about to begin. This is Counter-Strike 2.</p>
+                </div>
+                <div class="game-link text-center">
+                  <a href="https://store.steampowered.com/app/730/CounterStrike_2/" class="btn btn-primary">Play Now</a>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <section class="footer">
+      <div class="container">
+        <div class="row">
+          <div class="col-md-3 col-6">
+            <h4>About us</h4>
+            <ul class="list-unstyled">
+              <li>Gaming Community™</li>
+              <li>©No rights reserved</li>
+            </ul>
+          </div>
+          <div class="col-md-3 col-6">
+            <h4>Contacts</h4>
+            <ul class="list-unstyled">
+              <li>Yerasyl Rakhimov IT-2308</li>
+              <li>230916@astanait.edu.kz</li>
+            </ul>
+          </div>
+          <div class="col-md-3 col-6">
+            <h4>Current Date & Time</h4>
+            <p id="dateTime"></p>
+        </div>
+          <div class="col-md-3 col-6">
+            <h4>Socials</h4>
+            <ul class="footer-icons">
+              <a class="my_links yt" href="#"><i class="fab fa-youtube"></i></a>
+              <a class="my_links tg" href="https://t.me/altdaempet"><i class="fab fa-telegram"></i></a>
+              <a class="my_links inst" href="https://instagram.com/notyerra"><i class="fab fa-instagram"></i></a>
+              <a class="my_links dsk" href="#"><i class="fab fa-discord"></i></a>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </section>
+  </footer>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
+  <div class="modal">
+    <div class="modal__main">
+      <h2 class="modal__title">Work in progress...</h2>
+
+      <div class="modal__container">
+        <p>There is nothing yet...</p>
+      </div>
+
+      <button class="modal__close">&#10006</button>
+    </div>
+  </div>
+</body>
+</html>
