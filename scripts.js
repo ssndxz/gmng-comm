@@ -285,15 +285,19 @@ const LAT = '51.16';
 const LON = '71.47';
 
 async function fetchWeather(city) {
-  try {
-    const response = await fetch(`https://api.openweathermap.org/data/2.5/weather?lat=${LAT}}&lon=${LON}&appid=${API_KEY}&units=metric`);
-    const data = await response.json();
-    const cityName = data.name;
-    const temperature = Math.round(data.main.temp);
-    const weatherInfo = `${cityName}: ${temperature}°C`;
-    document.getElementById('weatherInfo').textContent = weatherInfo;
-  } catch (error) {
-    console.error('Error fetching weather data:', error);
-    document.getElementById('weatherInfo').textContent = 'Weather info unavailable';
-  }
+  fetch(`https://api.openweathermap.org/data/2.5/weather?lat=${LAT}&lon=${LON}&appid=${API_KEY}&units=metric`)
+    .then(response => {
+      if (!response.ok) throw new Error(`Error: ${response.status} - ${response.statusText}`);
+      return response.json();
+    })
+    .then(data => {
+      const cityName = data.name;
+      const temperature = Math.round(data.main.temp);
+      const weatherInfo = `${cityName}: ${temperature}°C`;
+      document.getElementById('weatherInfo').textContent = weatherInfo;
+    })
+    .catch(error => {
+      console.error('Error fetching weather data:', error);
+      document.getElementById('weatherInfo').textContent = 'Weather info unavailable';
+    });
 }
