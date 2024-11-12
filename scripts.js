@@ -83,8 +83,11 @@ function updateDateTime() {
   }
 }
 
-updateDateTime();
-setInterval(updateDateTime, 60000);
+document.addEventListener('DOMContentLoaded', () => {
+  updateDateTime();
+  fetchWeather(LAT, LON);
+  setInterval(updateDateTime, 60000);
+});
 
 // Form validation
 function loadUserData() {
@@ -165,68 +168,35 @@ document.addEventListener('DOMContentLoaded', () => {
 });
 
 // Drag and Drop
-const gameCards = document.querySelectorAll('.game-card-container');
-let draggedItem = null;
+let draggedQuestion = null;
 
-gameCards.forEach(card => {
-  card.addEventListener('dragstart', function () {
-    draggedItem = this;
-    setTimeout(() => this.classList.add('dragging'), 0);
-  });
+function addDragAndDropListenersToFAQ() {
+  const faqQuestions = document.querySelectorAll('.faq-item');
 
-  card.addEventListener('dragend', function () {
-    this.classList.remove('dragging');
-    draggedItem = null;
-  });
+  faqQuestions.forEach(question => {
+    question.addEventListener('dragstart', function () {
+      draggedQuestion = this;
+      setTimeout(() => this.style.display = 'none', 0);
+    });
 
-  card.addEventListener('dragover', function (e) {
-    e.preventDefault();
-  });
+    question.addEventListener('dragend', function () {
+      this.style.display = '';
+      draggedQuestion = null;
+    });
 
-  card.addEventListener('drop', function () {
-    if (draggedItem !== this) {
-      const draggedItemParent = draggedItem.parentNode;
-      const targetItemParent = this.parentNode;
+    question.addEventListener('dragover', function (e) {
+      e.preventDefault();
+    });
 
-      const draggedClone = draggedItem.cloneNode(true);
-      const targetClone = this.cloneNode(true);
-
-      draggedItemParent.replaceChild(targetClone, draggedItem);
-      targetItemParent.replaceChild(draggedClone, this);
-
-      addDragAndDropListeners(draggedClone);
-      addDragAndDropListeners(targetClone);
-    }
-  });
-});
-
-function addDragAndDropListeners(card) {
-  card.addEventListener('dragstart', function () {
-    draggedItem = this;
-  });
-  card.addEventListener('dragend', function () {
-    this.classList.remove('dragging');
-    draggedItem = null;
-  });
-  card.addEventListener('dragover', function (e) {
-    e.preventDefault();
-  });
-  card.addEventListener('drop', function () {
-    if (draggedItem !== this) {
-      const draggedItemParent = draggedItem.parentNode;
-      const targetItemParent = this.parentNode;
-
-      const draggedClone = draggedItem.cloneNode(true);
-      const targetClone = this.cloneNode(true);
-
-      draggedItemParent.replaceChild(targetClone, draggedItem);
-      targetItemParent.replaceChild(draggedClone, this);
-
-      addDragAndDropListeners(draggedClone);
-      addDragAndDropListeners(targetClone);
-    }
+    question.addEventListener('drop', function () {
+      if (draggedQuestion !== this) {
+        this.parentNode.insertBefore(draggedQuestion, this.nextSibling);
+      }
+    });
   });
 }
+
+addDragAndDropListenersToFAQ();
 
 // Sound buttons
 function playSound(src) {
@@ -286,7 +256,7 @@ function login() {
   localStorage.setItem('password', password);
   checkUserLogin();
 }
-
+// I love Dariya btw <3
 function logout() {
   localStorage.removeItem('username');
   localStorage.removeItem('password');
@@ -308,3 +278,22 @@ document.querySelector('.container').addEventListener('click', event => {
     }
   });
 });
+
+// WeatherAPI
+const API_KEY = '9f9a8e09c5df05dbe4274f7a133ce4a0';
+const LAT = '51.16';
+const LON = '71.47';
+
+async function fetchWeather(city) {
+  try {
+    const response = await fetch(`https://api.openweathermap.org/data/2.5/weather?lat=${LAT}}&lon=${LON}&appid=${API_KEY}&units=metric`);
+    const data = await response.json();
+    const cityName = data.name;
+    const temperature = Math.round(data.main.temp);
+    const weatherInfo = `${cityName}: ${temperature}°C`;
+    document.getElementById('weatherInfo').textContent = weatherInfo;
+  } catch (error) {
+    console.error('Error fetching weather data:', error);
+    document.getElementById('weatherInfo').textContent = 'Weather info unavailable';
+  }
+}
