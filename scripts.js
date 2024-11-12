@@ -1,3 +1,4 @@
+// Modal PopUp
 const modalController = ({modal, btnOpen, btnClose}) => {
     const buttonElem = document.querySelector(btnOpen);
     const modalElem = document.querySelector(modal);
@@ -49,6 +50,7 @@ modalController({
   btnClose: '.modal__close'
 });
 
+// Darkmode/Lightmode switch
 let lightmode = localStorage.getItem('lightmode')
 const themeSwitch = document.getElementById('theme-switch')
 
@@ -67,6 +69,7 @@ themeSwitch.addEventListener('click', () => {
     lightmode !== 'active' ? enableLightmode() : disableLightmode()
 })
 
+// Date and time
 function updateDateTime() {
   const dateTimeElem = document.getElementById('dateTime');
   if (dateTimeElem) {
@@ -83,54 +86,73 @@ function updateDateTime() {
 updateDateTime();
 setInterval(updateDateTime, 60000);
 
-document.addEventListener('DOMContentLoaded', function () {
-  const form = document.getElementById('contactForm');
+// Form validation
+function loadUserData() {
+  const username = localStorage.getItem('username');
+  const password = localStorage.getItem('password');
+  
+  if (username && password) {
+    document.getElementById('name').value = username;
+    document.getElementById('password1').value = password;
+  }
+}
 
+document.addEventListener('DOMContentLoaded', () => {
+  loadUserData(); 
+  const form = document.getElementById('contactForm');
+  
   form.addEventListener('submit', function (event) {
     event.preventDefault();
     const name = document.getElementById('name');
     const email = document.getElementById('email');
-    const password = document.getElementById('password');
-    const confirmPassword = document.getElementById('confirmPassword');
+    const password = document.getElementById('password1');
+    const password2 = document.getElementById('password2');
     const message = document.getElementById('message');
     let valid = true;
+
     if (name.value.trim() === '') {
       name.classList.add('is-invalid');
       valid = false;
     } else {
       name.classList.remove('is-invalid');
     }
+
     const emailPattern = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
     if (!emailPattern.test(email.value)) {
-       email.classList.add('is-invalid');
+      email.classList.add('is-invalid');
       valid = false;
     } else {
       email.classList.remove('is-invalid');
     }
+
     if (password.value.length < 6) {
       password.classList.add('is-invalid');
       valid = false;
     } else {
       password.classList.remove('is-invalid');
     }
-    if (password.value !== confirmPassword.value) {
-      confirmPassword.classList.add('is-invalid');
+
+    if (password.value !== password2.value) {
+      password2.classList.add('is-invalid');
       valid = false;
     } else {
-      confirmPassword.classList.remove('is-invalid');
+      password2.classList.remove('is-invalid');
     }
+
     if (message.value.trim() === '') {
       message.classList.add('is-invalid');
       valid = false;
     } else {
       message.classList.remove('is-invalid');
     }
+
     if (valid) {
       alert('Form submitted successfully!');
     }
   });
 });
 
+// FAQ section
 document.addEventListener('DOMContentLoaded', () => {
   const faqQuestions = document.querySelectorAll('.faq-question');
 
@@ -142,6 +164,7 @@ document.addEventListener('DOMContentLoaded', () => {
   });
 });
 
+// Drag and Drop
 const gameCards = document.querySelectorAll('.game-card-container');
 let draggedItem = null;
 
@@ -205,6 +228,7 @@ function addDragAndDropListeners(card) {
   });
 }
 
+// Sound buttons
 function playSound(src) {
   const sound = new Audio(src);
   sound.play();
@@ -231,6 +255,7 @@ window.onload = function() {
   document.getElementById('logout-btn').addEventListener('click', logout);
 }
 
+// Login and Logout
 function checkUserLogin() {
   const user = localStorage.getItem('username');
   if (user) {
@@ -267,3 +292,19 @@ function logout() {
   localStorage.removeItem('password');
   checkUserLogin();
 }
+
+// Filter
+const filterBox = document.querySelectorAll('.game-card-container');
+
+document.querySelector('.container').addEventListener('click', event => {
+  if (event.target.tagName !== 'LI') return false;
+
+  let filterClass = event.target.dataset['f'];
+
+  filterBox.forEach( elem =>{
+    elem.classList.remove('hide');
+    if (!elem.classList.contains(filterClass) && filterClass !== 'all') {
+      elem.classList.add('hide');
+    }
+  });
+});
