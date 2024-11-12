@@ -50,6 +50,7 @@ body {
   background-color: var(--bg-color);
   color: var(--text-color); 
   min-width: 320px;
+  min-height: 100vh;
 }
 
 section {
@@ -115,10 +116,13 @@ img {
   border-radius: 10px;
   box-shadow: 0 2px 5px 0 rgba(0, 0, 0, 0.06);
   transition: all 0.3s;
+  flex-grow: 1;
 }
 
 .game-card img {
   border-radius: 10px;
+  object-fit: cover;
+  min-width: 100%;
 }
 
 .game-card:hover {
@@ -229,7 +233,7 @@ img {
 
 
 .faq {
-  max-width: 800px;
+  max-width: 650px;
   margin: 0 auto;
   padding: 20px;
   text-align: center;
